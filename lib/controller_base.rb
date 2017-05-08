@@ -21,15 +21,15 @@ class ControllerBase
     raise if already_built_response?
     res.header['location'] = url
     res.status = 302
-    @already_built_response = true
+    self.already_built_response = true
     session.store_session(@res)
   end
 
   def render_content(content, content_type)
     raise if already_built_response?
-    @res['Content-Type'] = content_type
-    @res.write(content)
-    @already_built_response = true
+    res['Content-Type'] = content_type
+    res.write(content)
+    self.already_built_response = true
     session.store_session(@res)
   end
 
